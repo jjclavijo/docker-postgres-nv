@@ -15,6 +15,7 @@ endif
 ifdef HTTP_PROXY
 	sed -Ei 's/gpg (.*) --keyserver /gpg \1 --keyserver-options http-proxy="$(subst /,\/,$(HTTP_PROXY))" --keyserver /g' $@
 endif
+	sed -i 's/^FROM debian/FROM docker.io\/debian/' $@
 
 docker-entrypoint.sh:
 ifndef HTTPS_PROXY
